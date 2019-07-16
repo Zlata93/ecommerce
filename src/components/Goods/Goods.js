@@ -49,12 +49,10 @@ class Goods extends Component {
     render() {
         return (
             <div className='goods'>
-                {sections.map(section => (
+                {sections.map(({id, ...otherProps}) => (
                     <GoodsItem
-                        title={section.title}
-                        key={section.id}
-                        img={section.imageUrl}
-                        size={section.size}
+                        key={id}
+                        {...otherProps}
                     />
                 ))}
             </div>
