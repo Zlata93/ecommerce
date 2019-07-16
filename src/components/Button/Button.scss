@@ -1,0 +1,22 @@
+.button {
+  min-width: 165px;
+  width: auto;
+  height: 50px;
+  letter-spacing: .5px;
+  line-height: 50px;
+  padding: 0 35px;
+  font-size: 15px;
+  background: #000;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-weight: bolder;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+  }
+}

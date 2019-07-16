@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Input from '../Input/Input';
+import Button from '../Button/Button';
 import './SignIn.scss';
 
 class SignIn extends Component {
@@ -34,12 +35,10 @@ class SignIn extends Component {
 
                 <form onSubmit={this.handleSubmit}>
                     <Input name='email' value={email} type='email' required handleChange={this.handleChange} label='email'/>
-                    <label>Email</label>
 
                     <Input name='password' value={password} type='password' required handleChange={this.handleChange} label='password'/>
-                    <label>Password</label>
 
-                    <input type='submit' value='Submit Form' />
+                    <Button type='submit'>Sign in</Button>
                 </form>
             </div>
         );
