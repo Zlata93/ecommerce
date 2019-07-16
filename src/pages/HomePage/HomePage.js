@@ -1,13 +1,11 @@
 import React from 'react';
 import './HomePage.scss';
-import MenuItem from '../../components/MenuItem/MenuItem';
+import Goods from '../../components/Goods/Goods';
 
 export default function HomePage() {
 	return (
 		<div className='homepage'>
-			<div className='dir-menu'>
-				<MenuItem title={'hats'}/>
-			</div>
+			<Goods/>
 		</div>
 	);
 }
