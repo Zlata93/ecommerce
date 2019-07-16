@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PreviewCollection from '../../components/PreviewCollection/PreviewCollection';
+import Collection from '../../components/Collection/Collection';
 
 const SHOP_DATA = [
     {
@@ -259,7 +259,7 @@ class ShopPage extends Component {
         return (
             <div className='shop-page'>
                 {SHOP_DATA.map(({id, ...otherProps}) => (
-                    <PreviewCollection key={id} {...otherProps}/>
+                    <Collection key={id} {...otherProps}/>
                 ))}
             </div>
         );
