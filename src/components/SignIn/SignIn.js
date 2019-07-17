@@ -35,9 +35,9 @@ class SignIn extends Component {
                 <span>Sign in with your email and password</span>
 
                 <form onSubmit={this.handleSubmit}>
-                    <Input name='email' value={email} type='email' required handleChange={this.handleChange} label='email'/>
+                    <Input name='email' value={email} type='email' required handleChange={this.handleChange} label='Email'/>
 
-                    <Input name='password' value={password} type='password' required handleChange={this.handleChange} label='password'/>
+                    <Input name='password' value={password} type='password' required handleChange={this.handleChange} label='Password'/>
 
                     <div className='signin__buttons'>
                         <Button type='submit'>Sign in</Button>
