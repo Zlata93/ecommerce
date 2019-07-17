@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
-import {auth, createUserProfileDocument, signInWithGoogle} from '../../firebase/firebase';
+import { auth, createUserProfileDocument } from '../../firebase/firebase';
 import './SignUp.scss';
 
 class SignUp extends Component {
