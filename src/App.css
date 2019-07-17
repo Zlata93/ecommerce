@@ -3,6 +3,10 @@ body {
     padding: 20px 80px;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 /*@keyframes App-logo-spin {*/
 /*  from {*/
 /*    transform: rotate(0deg);*/
