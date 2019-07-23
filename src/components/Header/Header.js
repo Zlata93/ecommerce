@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { auth } from '../../firebase/firebase';
+import CartIcon from '../CartIcon/CartIcon';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import './Header.scss';
 
@@ -23,6 +24,7 @@ const Header = ({ user }) => {
                     ? <div className='header__option' onClick={() => auth.signOut()}>sign out</div>
                     : <Link to={'/signin'} className='header__option'>sign in</Link>
                 }
+                <CartIcon />
             </div>
         </header>
     )
