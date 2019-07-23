@@ -23,11 +23,19 @@
 
   &__quantity {
     width: 23%;
-    padding-left: 20px;
+    display: flex;
+
+    &-value {
+      margin: 0 10px;
+    }
   }
 
   &__remove-button {
     padding-left: 12px;
+    cursor: pointer;
+  }
+
+  &__arrow {
     cursor: pointer;
   }
 }
