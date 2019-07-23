@@ -7,8 +7,8 @@ const Collection = ({title, items}) => {
         <div className='collection'>
             <h1 className='collection__title'>{title}</h1>
             <div className='collection__body'>
-                {items.filter((item, i) => i < 4).map(({id, ...otherProps}) => (
-                    <CollectionItem key={id} {...otherProps} />
+                {items.filter((item, i) => i < 4).map((item) => (
+                    <CollectionItem key={item.id} item={item} />
                 ))}
             </div>
         </div>
