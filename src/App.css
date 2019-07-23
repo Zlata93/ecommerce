@@ -1,6 +1,12 @@
 body {
     font-family: 'Open Sans Condensed', sans-serif;
-    padding: 20px 80px;
+    padding: 20px;
+}
+
+.app {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
 }
 
 * {
