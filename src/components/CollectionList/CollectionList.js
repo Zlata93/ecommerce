@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { selectShopData } from '../../redux/shop/shop-selectors';
 import Collection from '../Collection/Collection';
-import './CollectionFull.scss';
+import './CollectionList.scss';
 
-const CollectionFull = ({ shopData }) => {
+const CollectionList = ({ shopData }) => {
     return (
-        <div className='full-collection'>
+        <div className='collection-list'>
             {
                 shopData.map(({ id, ...otherProps }) => (
                     <Collection key={id} {...otherProps} />
@@ -20,4 +20,4 @@ const mapStateToProps = (state) => ({
     shopData: selectShopData(state)
 });
 
-export default connect(mapStateToProps)(CollectionFull);
+export default connect(mapStateToProps)(CollectionList);
