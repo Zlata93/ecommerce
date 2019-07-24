@@ -5,7 +5,7 @@ import Goods from '../../components/Goods/Goods';
 export default function HomePage() {
 	return (
 		<div className='homepage'>
-			<Goods/>
+			<Goods />
 		</div>
 	);
 }
