@@ -1,20 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { selectShopData } from '../../redux/shop/shop-selectors';
-import Collection from '../../components/Collection/Collection';
+import { Route } from 'react-router-dom';
+import CollectionFull from '../../components/CollectionFull/CollectionFull';
 
-const ShopPage = ({ shopData }) => {
+const ShopPage = ({ match }) => {
     return (
         <div className='shop-page'>
-            {shopData.map(({id, ...otherProps}) => (
-                <Collection key={id} {...otherProps}/>
-            ))}
+            <Route exact path={`${match.path}`} component={CollectionFull} />
         </div>
     );
 };
 
-const mapStateToProps = (state) => ({
-    shopData: selectShopData(state)
-});
-
-export default connect(mapStateToProps)(ShopPage);
+export default ShopPage;
