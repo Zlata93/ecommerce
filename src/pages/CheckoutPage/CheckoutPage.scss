@@ -32,4 +32,14 @@
   &__body {
     width: 100%;
   }
+
+  &__test-warning {
+    margin-top: 20px;
+    color: red;
+  }
+
+  button {
+    margin-left: auto;
+    margin-top: 20px;
+  }
 }
