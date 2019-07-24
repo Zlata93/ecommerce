@@ -1,10 +1,21 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { selectCollections } from '../../redux/shop/shop-selectors';
 import Collection from '../Collection/Collection';
 import './CollectionList.scss';
 
 const CollectionList = ({ shopData }) => {
+
+    useEffect(() => {
+        (function() {
+            if ("ontouchstart" in document.documentElement) {
+                const collectionList = document.querySelector('.collection-list');
+                if (collectionList) collectionList.className += " no-hover";
+            }
+        })()
+    }, []);
+
     return (
         <div className='collection-list'>
             {

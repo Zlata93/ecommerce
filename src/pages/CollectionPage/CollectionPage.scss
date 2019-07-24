@@ -18,4 +18,24 @@
       width: 100%;
     }
   }
+
+  @media screen and (max-width: 950px) {
+    &__items {
+      //grid-template-columns: repeat(2, 1fr);
+      grid-gap: 10px;
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    &__items {
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 20px;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    &__items {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
 }

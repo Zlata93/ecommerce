@@ -14,8 +14,9 @@
   &__items {
     height: 240px;
     display: flex;
-    flex-direction: column;
+    //flex-direction: column;
     overflow-y: auto;
+    flex-wrap: wrap;
   }
 
   &__button {

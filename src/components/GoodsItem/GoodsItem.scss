@@ -61,4 +61,18 @@
     background-position: center;
     background-size: cover;
   }
+
+  @media screen and (max-width: 550px) {
+    &__item {
+      &_large {
+        height: 240px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    &__item {
+      width: 100%;
+    }
+  }
 }

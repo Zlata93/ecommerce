@@ -12,6 +12,22 @@
   &__body {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  @media screen and (max-width: 850px) {
+    margin-bottom: 0;
+    &__title {
+      margin-left: 10px;
+    }
+    &__body {
+      justify-content: space-around;
+    }
   }
 }
 
