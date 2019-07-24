@@ -7,6 +7,12 @@ export const selectShopData = createSelector(
     (shop) => shop.shopData
 );
 
+// transforming object into array for CollectionList
+export const selectCollections = createSelector(
+    [selectShopData],
+    (shopData) => Object.keys(shopData).map(key => shopData[key])
+);
+
 export const selectCollection = (urlParam) => createSelector(
     [selectShopData],
     (shopData) => shopData[urlParam]

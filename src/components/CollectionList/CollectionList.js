@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectShopData } from '../../redux/shop/shop-selectors';
+import { selectCollections } from '../../redux/shop/shop-selectors';
 import Collection from '../Collection/Collection';
 import './CollectionList.scss';
 
@@ -17,7 +17,7 @@ const CollectionList = ({ shopData }) => {
 };
 
 const mapStateToProps = (state) => ({
-    shopData: selectShopData(state)
+    shopData: selectCollections(state)
 });
 
 export default connect(mapStateToProps)(CollectionList);
