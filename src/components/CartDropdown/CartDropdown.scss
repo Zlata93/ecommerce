@@ -14,9 +14,9 @@
   &__items {
     height: 240px;
     display: flex;
-    //flex-direction: column;
     overflow-y: auto;
     flex-wrap: wrap;
+    align-content: start;
   }
 
   &__button {
