@@ -2,16 +2,22 @@ import React from 'react';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { selectCollections } from '../../redux/shop/shop-selectors';
+import { selectCartHidden } from '../../redux/cart/cart-selectors';
+import { hideCart } from '../../redux/cart/cart-actions';
 import Collection from '../Collection/Collection';
 import './CollectionList.scss';
 
-const CollectionList = ({ shopData }) => {
+const CollectionList = ({ shopData, isHidden, hideCart }) => {
 
     useEffect(() => {
         (function() {
             if ("ontouchstart" in document.documentElement) {
                 const collectionList = document.querySelector('.collection-list');
                 if (collectionList) collectionList.className += " no-hover";
+            }
+
+            if (!isHidden) {
+                hideCart();
             }
         })()
     }, []);
@@ -28,7 +34,12 @@ const CollectionList = ({ shopData }) => {
 };
 
 const mapStateToProps = (state) => ({
-    shopData: selectCollections(state)
+    shopData: selectCollections(state),
+    isHidden: selectCartHidden(state)
 });
 
-export default connect(mapStateToProps)(CollectionList);
+const mapDispatchToProps = (dispatch) => ({
+    hideCart: () => dispatch(hideCart())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CollectionList);

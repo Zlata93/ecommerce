@@ -10,7 +10,9 @@ const initialState = {
 const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case cartActionTypes.TOGGLE_CART_HIDDEN:
-            return {...state, isHidden: !state.isHidden };
+            return { ...state, isHidden: !state.isHidden };
+        case cartActionTypes.HIDE_CART:
+            return { ...state, isHidden: true };
         case cartActionTypes.ADD_ITEM:
             return { ...state, cartItems: addItemToCart(state.cartItems, action.payload) };
         case cartActionTypes.CLEAR_ITEM:
