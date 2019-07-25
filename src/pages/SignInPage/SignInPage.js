@@ -19,6 +19,8 @@ const SignInPage = ({ isHidden, hideCart }) => {
             if (!isHidden) {
                 hideCart();
             }
+
+            window.scrollTo(0,0);
         })()
     }, []);
 
