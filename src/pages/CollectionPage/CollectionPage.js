@@ -8,7 +8,7 @@ import CollectionItem from '../../components/CollectionItem/CollectionItem';
 import './CollectionPage.scss';
 
 const CollectionPage = ({ collection, isHidden, hideCart }) => {
-    const { title, items } = collection;
+    const { title = '', items = [] } = collection;
 
     useEffect(() => {
         (function() {

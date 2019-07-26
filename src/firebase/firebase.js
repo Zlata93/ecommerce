@@ -18,7 +18,10 @@ export const createUserProfileDocument = async (userAuth, data) => {
     }
 
     const userRef = firestore.doc(`users/${userAuth.uid}`);
+    // const collectionRef = firestore.collection(`users`);
+
     const snapShot = await userRef.get();
+    // const collectionSnapShot = await collectionRef.get();
 
     if (!snapShot.exists) {
         const { displayName, email } = userAuth;
@@ -40,11 +43,43 @@ export const createUserProfileDocument = async (userAuth, data) => {
 
 firebase.initializeApp(config);
 
+export const convertCollectionsSnapshotToMap = (collections) => {
+    const transformedCollection = collections.docs.map((doc) => {
+        const { title, items } = doc.data();
+        return {
+            routeName: encodeURI(title.toLowerCase()),
+            id: doc.id,
+            title,
+            items
+        }
+    });
+
+    return transformedCollection.reduce((acc, collection) => {
+        acc[collection.title.toLowerCase()] = collection;
+        return acc;
+    }, {});
+};
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
+
+export const addCollectionAndDocs = async (collectionKey, objects) => {
+    // create a collection using a collection key
+    const collectionRef = firestore.collection(collectionKey);
+
+    // to do all calls
+    const batch = firestore.batch();
+    objects.forEach((obj) => {
+        const newDocRef = collectionRef.doc();
+        batch.set(newDocRef, obj);
+    });
+
+    // fire off our batch requests
+    return await batch.commit();
+};
 
 export default firebase;

@@ -10,10 +10,10 @@ export const selectShopData = createSelector(
 // transforming object into array for CollectionList
 export const selectCollections = createSelector(
     [selectShopData],
-    (shopData) => Object.keys(shopData).map(key => shopData[key])
+    (shopData) => shopData ? Object.keys(shopData).map(key => shopData[key]) : []
 );
 
 export const selectCollection = (urlParam) => createSelector(
     [selectShopData],
-    (shopData) => shopData[urlParam]
+    (shopData) => shopData ? shopData[urlParam] : {}
 );
