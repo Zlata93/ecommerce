@@ -25,6 +25,7 @@ const ShopPage = ({ match, updateCollections }) => {
                 });
             }
         )();
+        return unSubscribeFromSnapshot;
     }, []);
 
     return (
