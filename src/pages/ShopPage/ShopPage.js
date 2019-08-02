@@ -19,7 +19,7 @@ const ShopPage = ({ match, updateCollections }) => {
         (
             function(){
                 const collectionRef = firestore.collection('collections');
-                collectionRef.onSnapshot(async snapshot => {
+                collectionRef.get().then(snapshot => {
                     updateCollections(convertCollectionsSnapshotToMap(snapshot));
                     setLoading(false);
                 });
