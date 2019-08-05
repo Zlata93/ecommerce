@@ -5,25 +5,15 @@ import { selectCollection } from '../../redux/shop/shop-selectors';
 import { selectCartHidden } from '../../redux/cart/cart-selectors';
 import { hideCart } from '../../redux/cart/cart-actions';
 import CollectionItem from '../../components/CollectionItem/CollectionItem';
+import { onPageNav } from '../../utils/helpers';
 import './CollectionPage.scss';
 
 const CollectionPage = ({ collection, isHidden, hideCart }) => {
     const { title , items } = collection;
 
     useEffect(() => {
-        (function() {
-            if ("ontouchstart" in document.documentElement) {
-                const collectionPage = document.querySelector('.collection-page');
-                if (collectionPage) collectionPage.className += " no-hover";
-            }
-
-            if (!isHidden) {
-                hideCart();
-            }
-
-            window.scrollTo(0,0);
-        })()
-    }, []);
+        onPageNav(isHidden, hideCart);
+    }, [hideCart]);
 
     return (
         <div className='collection-page'>

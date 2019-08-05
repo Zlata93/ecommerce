@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { fetchCollectionsStart } from '../../redux/shop/shop-actions';
 import { selectIsCollectionFetching } from '../../redux/shop/shop-selectors';
-// import { selectIsCollectionFetching, selectIsCollectionsLoaded } from '../../redux/shop/shop-selectors';
 import CollectionList from '../../components/CollectionList/CollectionList';
 import CollectionPage from '../CollectionPage/CollectionPage';
 import WithSpinner from "../../hocs/withSpinner/withSpinner";
@@ -20,7 +19,7 @@ const ShopPage = ({ match, fetchCollectionsStart, isFetching }) => {
                 fetchCollectionsStart();
             }
         )();
-    }, []);
+    }, [fetchCollectionsStart]);
 
     return (
         <div className='shop-page'>

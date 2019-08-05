@@ -3,25 +3,16 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { selectCartHidden } from '../../redux/cart/cart-selectors';
 import { hideCart } from '../../redux/cart/cart-actions';
-import './HomePage.scss';
+import { onPageNav } from '../../utils/helpers';
 import Goods from '../../components/Goods/Goods';
+import './HomePage.scss';
+
 
 const HomePage = ({ isHidden, hideCart }) => {
 
 	useEffect(() => {
-		(function() {
-			if ("ontouchstart" in document.documentElement) {
-				const collectionPage = document.querySelector('.collection-page');
-				if (collectionPage) collectionPage.className += " no-hover";
-			}
-
-			if (!isHidden) {
-				hideCart();
-			}
-
-			window.scrollTo(0,0);
-		})()
-	}, []);
+		onPageNav(isHidden, hideCart);
+	}, [hideCart]);
 
 	return (
 		<div className='homepage'>

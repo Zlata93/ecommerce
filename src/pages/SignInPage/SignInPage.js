@@ -5,24 +5,14 @@ import { selectCartHidden } from '../../redux/cart/cart-selectors';
 import { hideCart } from '../../redux/cart/cart-actions';
 import SignIn from '../../components/SignIn/SignIn';
 import SignUp from '../../components/SignUp/SignUp';
+import { onPageNav } from '../../utils/helpers';
 import './SignInPage.scss';
 
 const SignInPage = ({ isHidden, hideCart }) => {
 
     useEffect(() => {
-        (function() {
-            if ("ontouchstart" in document.documentElement) {
-                const collectionPage = document.querySelector('.collection-page');
-                if (collectionPage) collectionPage.className += " no-hover";
-            }
-
-            if (!isHidden) {
-                hideCart();
-            }
-
-            window.scrollTo(0,0);
-        })()
-    }, []);
+        onPageNav(isHidden, hideCart);
+    }, [hideCart]);
 
     return (
         <div className='signin-page'>
