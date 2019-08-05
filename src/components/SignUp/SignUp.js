@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { signUpStart } from '../../redux/user/user-actions';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 import { auth, createUserProfileDocument } from '../../firebase/firebase';
@@ -23,26 +25,14 @@ class SignUp extends Component {
         e.preventDefault();
 
         const { displayName, email, password, confirmPassword } = this.state;
+        const { signUpStart } = this.props;
 
         if (password !== confirmPassword) {
             alert('Passwords don\'t match');
             return;
         }
 
-        try {
-            const { user } = await auth.createUserWithEmailAndPassword(email, password);
-
-            await createUserProfileDocument(user, { displayName });
-
-            this.setState({
-                displayName: '',
-                email: '',
-                password: '',
-                confirmPassword: ''
-            })
-        } catch (err) {
-            console.log('Error creating user with sign up: ', err);
-        }
+        signUpStart({ email, password, displayName });
     };
 
     handleChange = (e) => {
@@ -73,4 +63,8 @@ class SignUp extends Component {
     }
 }
 
-export default SignUp;
+const mapDispatchToProps = (dispatch) => ({
+    signUpStart: (userData) => dispatch(signUpStart(userData))
+});
+
+export default connect(null, mapDispatchToProps)(SignUp);

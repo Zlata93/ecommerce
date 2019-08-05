@@ -12,7 +12,7 @@ const config = {
     appId: "1:371892720435:web:371af0111559b3aa"
 };
 
-export const createUserProfileDocument = async (userAuth, data) => {
+export const createUserProfileDocument = async (userAuth, additionalData) => {
     if (!userAuth) {
         return;
     }
@@ -32,7 +32,7 @@ export const createUserProfileDocument = async (userAuth, data) => {
                 displayName,
                 email,
                 createdAt,
-                ...data
+                ...additionalData
             });
         } catch(err) {
             console.log('Error creating user: ', err.message);
