@@ -9,8 +9,6 @@ import ShopPage from './pages/ShopPage/ShopPage';
 import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
 import SignInPage from './pages/SignInPage/SignInPage';
 import Header from './components/Header/Header';
-import { auth, createUserProfileDocument } from './firebase/firebase';
-import { selectCollections } from './redux/shop/shop-selectors';
 import './App.css';
 
 class App extends React.Component {
@@ -18,8 +16,6 @@ class App extends React.Component {
 	unsubscribeFromAuth = () => {};
 
 	componentDidMount() {
-		const { setCurrentUser } = this.props;
-
 
 		// this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
 		// 	if (userAuth) {
@@ -60,8 +56,4 @@ const mapStateToProps = createStructuredSelector({
 	user: selectCurrentUser,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-	setCurrentUser: (user) => dispatch(setCurrentUser(user))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
