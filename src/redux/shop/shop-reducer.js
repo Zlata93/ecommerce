@@ -1,4 +1,4 @@
-import { shopActionTypes } from './shop-types';
+import shopActionTypes from './shop-types';
 
 const initialState = {
     shopData: null,
