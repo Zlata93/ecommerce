@@ -12,7 +12,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(bodyParser(json()));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors());
@@ -40,11 +40,11 @@ app.post('/payment', (req, res) => {
         currency: 'usd'
     };
 
-    stripe.charges.create(body, (err, res) => {
+    stripe.charges.create(body, (err, stripeRes) => {
         if (err) {
             res.status(500).send({ err });
         } else {
-            res.status(200).send({ res });
+            res.status(200).send({ success: stripeRes });
         }
     })
 });
