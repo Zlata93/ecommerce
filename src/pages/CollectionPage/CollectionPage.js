@@ -1,14 +1,13 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { selectCollection } from '../../redux/shop/shop-selectors';
 import { selectCartHidden } from '../../redux/cart/cart-selectors';
 import { hideCart } from '../../redux/cart/cart-actions';
 import CollectionItem from '../../components/CollectionItem/CollectionItem';
+import CollectionsContext from "../../contexts/collections/collections-context";
 import './CollectionPage.scss';
 
-const CollectionPage = ({ collection, isHidden, hideCart }) => {
-    const { title, items } = collection;
+const CollectionPage = ({ isHidden, hideCart, match }) => {
 
     useEffect(() => {
         (function() {
@@ -26,14 +25,26 @@ const CollectionPage = ({ collection, isHidden, hideCart }) => {
     }, []);
 
     return (
-        <div className='collection-page'>
-            <h2 className='collection-page__title'>{title}</h2>
-            <div className='collection-page__items'>
-                {
-                    items.map(item => <CollectionItem key={item.id} item={item} />)
+        <CollectionsContext.Consumer>
+            {
+                collections => {
+                    const collection = collections[match.params.collectionId];
+                    const { title, items } = collection;
+
+                    return (
+                        <div className='collection-page'>
+                            <h2 className='collection-page__title'>{title}</h2>
+                            <div className='collection-page__items'>
+                                {
+                                    items.map(item => <CollectionItem key={item.id} item={item} />)
+                                }
+                            </div>
+                        </div>
+                    );
                 }
-            </div>
-        </div>
+            }
+
+        </CollectionsContext.Consumer>
     );
 };
 
@@ -42,7 +53,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state, ownProps) => ({
-    collection: selectCollection(ownProps.match.params.collectionId)(state),
     isHidden: selectCartHidden(state)
 });
 
