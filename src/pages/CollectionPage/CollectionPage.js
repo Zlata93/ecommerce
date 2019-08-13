@@ -1,5 +1,4 @@
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { selectCartHidden } from '../../redux/cart/cart-selectors';
 import { hideCart } from '../../redux/cart/cart-actions';
@@ -7,7 +6,10 @@ import CollectionItem from '../../components/CollectionItem/CollectionItem';
 import CollectionsContext from "../../contexts/collections/collections-context";
 import './CollectionPage.scss';
 
-const CollectionPage = ({ isHidden, hideCart, match }) => {
+const CollectionPage = ({ match, isHidden, hideCart }) => {
+    const collections = useContext(CollectionsContext);
+    const collection = collections[match.params.collectionId];
+    const { title, items } = collection;
 
     useEffect(() => {
         (function() {
@@ -25,26 +27,14 @@ const CollectionPage = ({ isHidden, hideCart, match }) => {
     }, []);
 
     return (
-        <CollectionsContext.Consumer>
-            {
-                collections => {
-                    const collection = collections[match.params.collectionId];
-                    const { title, items } = collection;
-
-                    return (
-                        <div className='collection-page'>
-                            <h2 className='collection-page__title'>{title}</h2>
-                            <div className='collection-page__items'>
-                                {
-                                    items.map(item => <CollectionItem key={item.id} item={item} />)
-                                }
-                            </div>
-                        </div>
-                    );
+        <div className='collection-page'>
+            <h2 className='collection-page__title'>{title}</h2>
+            <div className='collection-page__items'>
+                {
+                    items.map(item => <CollectionItem key={item.id} item={item} />)
                 }
-            }
-
-        </CollectionsContext.Consumer>
+            </div>
+        </div>
     );
 };
 
