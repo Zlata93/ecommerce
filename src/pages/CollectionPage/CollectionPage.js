@@ -1,12 +1,11 @@
 import React, { useContext, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { selectCartHidden } from '../../redux/cart/cart-selectors';
-import { hideCart } from '../../redux/cart/cart-actions';
 import CollectionItem from '../../components/CollectionItem/CollectionItem';
 import CollectionsContext from "../../contexts/collections/collections-context";
+import { CartContext } from '../../providers/cart/cart-provider';
 import './CollectionPage.scss';
 
-const CollectionPage = ({ match, isHidden, hideCart }) => {
+const CollectionPage = ({ match }) => {
+    const { isHidden, hideCart } = useContext(CartContext);
     const collections = useContext(CollectionsContext);
     const collection = collections[match.params.collectionId];
     const { title, items } = collection;
@@ -38,12 +37,4 @@ const CollectionPage = ({ match, isHidden, hideCart }) => {
     );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-    hideCart: () => dispatch(hideCart())
-});
-
-const mapStateToProps = (state, ownProps) => ({
-    isHidden: selectCartHidden(state)
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CollectionPage);
+export default CollectionPage;

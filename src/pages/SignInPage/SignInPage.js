@@ -1,13 +1,11 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { selectCartHidden } from '../../redux/cart/cart-selectors';
-import { hideCart } from '../../redux/cart/cart-actions';
+import React, { useContext, useEffect } from 'react';
 import SignIn from '../../components/SignIn/SignIn';
 import SignUp from '../../components/SignUp/SignUp';
+import { CartContext } from '../../providers/cart/cart-provider';
 import './SignInPage.scss';
 
-const SignInPage = ({ isHidden, hideCart }) => {
+const SignInPage = () => {
+    const { isHidden, hideCart } = useContext(CartContext);
 
     useEffect(() => {
         (function() {
@@ -32,13 +30,5 @@ const SignInPage = ({ isHidden, hideCart }) => {
     );
 };
 
-const mapStateToProps = (state) => ({
-    isHidden: selectCartHidden(state)
-});
 
-const mapDispatchToProps = (dispatch) => ({
-    hideCart: () => dispatch(hideCart())
-});
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignInPage);
+export default SignInPage;

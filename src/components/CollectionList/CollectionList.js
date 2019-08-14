@@ -1,13 +1,13 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { selectCollections } from '../../redux/shop/shop-selectors';
-import { selectCartHidden } from '../../redux/cart/cart-selectors';
-import { hideCart } from '../../redux/cart/cart-actions';
+import React, { useContext, useEffect } from 'react';
 import Collection from '../Collection/Collection';
+import { CartContext } from '../../providers/cart/cart-provider';
+import CollectionsContext from "../../contexts/collections/collections-context";
 import './CollectionList.scss';
 
-const CollectionList = ({ shopData, isHidden, hideCart }) => {
+const CollectionList = () => {
+    const { isHidden, hideCart } = useContext(CartContext);
+    const collectionsMap = useContext(CollectionsContext);
+    const collections = Object.keys(collectionsMap).map(key => collectionsMap[key]);
 
     useEffect(() => {
         (function() {
@@ -27,7 +27,7 @@ const CollectionList = ({ shopData, isHidden, hideCart }) => {
     return (
         <div className='collection-list'>
             {
-                shopData.map(({ id, ...otherProps }) => (
+                collections.map(({ id, ...otherProps }) => (
                     <Collection key={id} {...otherProps} />
                 ))
             }
@@ -35,13 +35,4 @@ const CollectionList = ({ shopData, isHidden, hideCart }) => {
     );
 };
 
-const mapStateToProps = (state) => ({
-    shopData: selectCollections(state),
-    isHidden: selectCartHidden(state)
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    hideCart: () => dispatch(hideCart())
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CollectionList);
+export default CollectionList;

@@ -1,12 +1,10 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { selectCartHidden } from '../../redux/cart/cart-selectors';
-import { hideCart } from '../../redux/cart/cart-actions';
-import './HomePage.scss';
+import React, { useEffect, useContext } from 'react';
 import Goods from '../../components/Goods/Goods';
+import { CartContext } from '../../providers/cart/cart-provider';
+import './HomePage.scss';
 
-const HomePage = ({ isHidden, hideCart }) => {
+const HomePage = () => {
+	const { isHidden, hideCart } = useContext(CartContext);
 
 	useEffect(() => {
 		(function() {
@@ -30,12 +28,4 @@ const HomePage = ({ isHidden, hideCart }) => {
 	);
 };
 
-const mapStateToProps = (state) => ({
-	isHidden: selectCartHidden(state)
-});
-
-const mapDispatchToProps = (dispatch) => ({
-	hideCart: () => dispatch(hideCart())
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default HomePage;

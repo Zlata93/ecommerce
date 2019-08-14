@@ -4,14 +4,13 @@ import { auth } from '../../firebase/firebase';
 import CartIcon from '../CartIcon/CartIcon';
 import CartDropdown from '../CartDropdown/CartDropdown';
 import UserContext from "../../contexts/user/user-context";
-import CartContext from "../../contexts/cart/cart-context";
+import { CartContext } from '../../providers/cart/cart-provider';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import './Header.scss';
 
 const Header = () => {
     const user = useContext(UserContext);
-    const [isHidden, setIsHidden] = useState(true);
-    const toggleHidden = () => setIsHidden(!isHidden);
+    const { isHidden } = useContext(CartContext);
 
     return (
         <header className='header'>
@@ -30,13 +29,7 @@ const Header = () => {
                     ? <div className='header__option' onClick={() => auth.signOut()}>sign out</div>
                     : <Link to={'/signin'} className='header__option'>sign&nbsp;in</Link>
                 }
-                <CartContext.Provider value={{
-                    isHidden,
-                    toggleHidden
-                }}>
-                    <CartIcon />
-                </CartContext.Provider>
-
+                <CartIcon />
             </div>
             {
                 !isHidden && <CartDropdown />

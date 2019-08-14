@@ -1,10 +1,10 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { selectGoodsSection } from '../../redux/goods/goods-selector';
+import React, { useContext } from 'react';
 import GoodsItem from '../GoodsItem/GoodsItem';
+import GoodsContext from "../../contexts/goods/goods-context";
 import './Goods.scss';
 
-const Goods = ({ sections }) => {
+const Goods = () => {
+    const sections = useContext(GoodsContext);
     return (
         <div className='goods'>
             {sections.map(({id, ...otherProps}) => (
@@ -17,8 +17,4 @@ const Goods = ({ sections }) => {
     );
 };
 
-const mapStateToProps = (state) => ({
-    sections: selectGoodsSection(state)
-});
-
-export default connect(mapStateToProps)(Goods);
+export default Goods;

@@ -16,3 +16,9 @@ export const removeItemFromCart = (cartItems, item) => {
     }
     return cartItems.map(item => item.id === existingItem.id ? { ...item, quantity: item.quantity - 1 } : item);
 };
+
+export const clearItemFromCart = (cartItems, item) => cartItems.filter(cartItem => cartItem.id !== item.id);
+
+export const getCartItemsCount = (cartItems) => cartItems.reduce((acc, item) => acc + item.quantity, 0);
+
+export const getCartTotal = (cartItems) => cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
