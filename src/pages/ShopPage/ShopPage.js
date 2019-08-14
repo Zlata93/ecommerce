@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { default as CollectionList } from "../../components/CollectionList/CollectionListContainer";
-import CollectionPage from '../CollectionPage/CollectionPage';
+import { default as CollectionPage } from "../CollectionPage/CollectionPageContainer";
 
 const ShopPage = ({ match }) => {
     return (

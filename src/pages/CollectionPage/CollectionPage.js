@@ -1,7 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { selectCollection } from '../../redux/shop/shop-selectors';
 import { selectCartHidden } from '../../redux/cart/cart-selectors';
 import { hideCart } from '../../redux/cart/cart-actions';
 import CollectionItem from '../../components/CollectionItem/CollectionItem';
@@ -41,8 +40,7 @@ const mapDispatchToProps = (dispatch) => ({
     hideCart: () => dispatch(hideCart())
 });
 
-const mapStateToProps = (state, ownProps) => ({
-    collection: selectCollection(ownProps.match.params.collectionId)(state),
+const mapStateToProps = (state) => ({
     isHidden: selectCartHidden(state)
 });
 

@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import CollectionItem from '../CollectionItem/CollectionItem';
 import './Collection.scss';
 
-const Collection = ({title, items, routeName}) => {
+const Collection = ({title, items}) => {
     return (
         <div className='collection'>
             <h1 className='collection__title'>
-                <Link to={`shop/${routeName}`}>
+                <Link to={`shop/${title.toLowerCase()}`}>
                     {title}
                 </Link>
             </h1>
