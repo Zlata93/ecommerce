@@ -1,13 +1,13 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { selectCollections } from '../../redux/shop/shop-selectors';
 import { selectCartHidden } from '../../redux/cart/cart-selectors';
 import { hideCart } from '../../redux/cart/cart-actions';
 import Collection from '../Collection/Collection';
+import { createStructuredSelector } from 'reselect';
 import './CollectionList.scss';
 
-const CollectionList = ({ shopData, isHidden, hideCart }) => {
+const CollectionList = ({ collections, isHidden, hideCart }) => {
 
     useEffect(() => {
         (function() {
@@ -27,7 +27,7 @@ const CollectionList = ({ shopData, isHidden, hideCart }) => {
     return (
         <div className='collection-list'>
             {
-                shopData.map(({ id, ...otherProps }) => (
+                collections.map(({ id, ...otherProps }) => (
                     <Collection key={id} {...otherProps} />
                 ))
             }
@@ -35,9 +35,8 @@ const CollectionList = ({ shopData, isHidden, hideCart }) => {
     );
 };
 
-const mapStateToProps = (state) => ({
-    shopData: selectCollections(state),
-    isHidden: selectCartHidden(state)
+const mapStateToProps = createStructuredSelector({
+    isHidden: selectCartHidden
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import CollectionList from '../../components/CollectionList/CollectionList';
+import { default as CollectionList } from "../../components/CollectionList/CollectionListContainer";
 import CollectionPage from '../CollectionPage/CollectionPage';
 
 const ShopPage = ({ match }) => {
