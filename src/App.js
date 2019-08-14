@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
 import ShopPage from './pages/ShopPage/ShopPage';
@@ -9,54 +9,43 @@ import { auth, createUserProfileDocument } from './firebase/firebase';
 import UserContext from "./contexts/user/user-context";
 import './App.css';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+	const [user, setUser] = useState(null);
 
-		this.state = {
-			user: null
-		}
-	}
+	let unsubscribeFromAuth = () => {};
 
-	unsubscribeFromAuth = () => {};
-
-	componentDidMount() {
-		this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+	useEffect(() => {
+		unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
 			if (userAuth) {
 				const userRef = await createUserProfileDocument(userAuth);
 
 				userRef.onSnapshot(snapshot => {
-					this.setState({
-					user: {
+					setUser({
 						id: snapshot.id,
 						...snapshot.data()
-					}});
+					});
 				});
 			} else {
-				this.setState({ user: null });
+				setUser(null);
 			}
 		});
-	}
 
-	componentWillUnmount() {
-		this.unsubscribeFromAuth();
-	}
+		return unsubscribeFromAuth();
+	}, []);
 
-	render() {
-		return (
-			<div className='app'>
-				<UserContext.Provider value={this.state.user}>
-					<Header />
-				</UserContext.Provider>
-				<Switch>
-					<Route exact path='/' component={HomePage}/>
-					<Route path='/shop' component={ShopPage}/>
-					<Route exact path='/checkout' component={CheckoutPage}/>
-					<Route exact path='/signin' render={() => this.state.user ? <Redirect to='/' /> : <SignInPage />}/>
-				</Switch>
-			</div>
-		);
-	}
-}
+	return (
+		<div className='app'>
+			<UserContext.Provider value={user}>
+				<Header />
+			</UserContext.Provider>
+			<Switch>
+				<Route exact path='/' component={HomePage}/>
+				<Route path='/shop' component={ShopPage}/>
+				<Route exact path='/checkout' component={CheckoutPage}/>
+				<Route exact path='/signin' render={() => user ? <Redirect to='/' /> : <SignInPage />}/>
+			</Switch>
+		</div>
+	);
+};
 
 export default App;
