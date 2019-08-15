@@ -1,18 +1,15 @@
 import React from 'react';
-import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { selectCollections } from '../../redux/shop/shop-selectors';
 import { selectCartHidden } from '../../redux/cart/cart-selectors';
 import { hideCart } from '../../redux/cart/cart-actions';
 import Collection from '../Collection/Collection';
-import { onPageNav } from '../../utils/helpers';
 import './CollectionList.scss';
+import useHideCart from "../../hooks/useHideCart";
 
 const CollectionList = ({ shopData, isHidden, hideCart }) => {
 
-    useEffect(() => {
-        onPageNav(isHidden, hideCart);
-    }, [hideCart]);
+    useHideCart(isHidden, hideCart);
 
     return (
         <div className='collection-list'>

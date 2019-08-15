@@ -8,9 +8,9 @@ export const scrollToTop = () => {
     window.scrollTo(0, 0);
 };
 
-export const handleNoHover = (selector) => {
+export const handleNoHover = () => {
     if ("ontouchstart" in document.documentElement) {
-        const page = document.querySelector(selector);
+        const page = document.querySelector('.collection-list');
         if (page) page.className += " no-hover";
     }
 };
@@ -18,5 +18,4 @@ export const handleNoHover = (selector) => {
 export const onPageNav = (isHidden, hideCart) => {
     handleCartDropdown(isHidden, hideCart);
     scrollToTop();
-    handleNoHover('.collection-page');
 };

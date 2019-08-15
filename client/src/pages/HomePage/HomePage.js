@@ -1,18 +1,15 @@
 import React from 'react';
-import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { selectCartHidden } from '../../redux/cart/cart-selectors';
 import { hideCart } from '../../redux/cart/cart-actions';
-import { onPageNav } from '../../utils/helpers';
 import Goods from '../../components/Goods/Goods';
 import './HomePage.scss';
+import useHideCart from "../../hooks/useHideCart";
 
 
 const HomePage = ({ isHidden, hideCart }) => {
 
-	useEffect(() => {
-		onPageNav(isHidden, hideCart);
-	}, [hideCart]);
+	useHideCart(isHidden, hideCart);
 
 	return (
 		<div className='homepage'>

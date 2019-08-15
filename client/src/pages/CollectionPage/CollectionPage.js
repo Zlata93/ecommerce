@@ -1,24 +1,26 @@
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { selectCollection } from '../../redux/shop/shop-selectors';
 import { selectCartHidden } from '../../redux/cart/cart-selectors';
 import { hideCart } from '../../redux/cart/cart-actions';
 import CollectionItem from '../../components/CollectionItem/CollectionItem';
-import { onPageNav } from '../../utils/helpers';
+import { handleNoHover } from '../../utils/helpers';
 import './CollectionPage.scss';
+import useHideCart from "../../hooks/useHideCart";
 
 const CollectionPage = ({ collection, isHidden, hideCart }) => {
     const { title , items } = collection;
 
+    useHideCart(isHidden, hideCart);
+
     useEffect(() => {
-        onPageNav(isHidden, hideCart);
-    }, [hideCart]);
+        handleNoHover();
+    }, []);
 
     return (
         <div className='collection-page'>
             <h2 className='collection-page__title'>{title}</h2>
-            <div className='collection-page__items'>
+            <div className='collection-page__items collection-list'>
                 {
                     items.map(item => <CollectionItem key={item.id} item={item} />)
                 }

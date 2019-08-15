@@ -1,18 +1,15 @@
 import React from 'react';
-import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { selectCartHidden } from '../../redux/cart/cart-selectors';
 import { hideCart } from '../../redux/cart/cart-actions';
 import SignIn from '../../components/SignIn/SignIn';
 import SignUp from '../../components/SignUp/SignUp';
-import { onPageNav } from '../../utils/helpers';
 import './SignInPage.scss';
+import useHideCart from "../../hooks/useHideCart";
 
 const SignInPage = ({ isHidden, hideCart }) => {
 
-    useEffect(() => {
-        onPageNav(isHidden, hideCart);
-    }, [hideCart]);
+    useHideCart(isHidden, hideCart);
 
     return (
         <div className='signin-page'>

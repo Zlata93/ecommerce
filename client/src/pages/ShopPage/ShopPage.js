@@ -7,6 +7,7 @@ import { selectIsCollectionFetching } from '../../redux/shop/shop-selectors';
 import CollectionList from '../../components/CollectionList/CollectionList';
 import CollectionPage from '../CollectionPage/CollectionPage';
 import WithSpinner from "../../hocs/withSpinner/withSpinner";
+import { handleNoHover } from "../../utils/helpers";
 
 const ShopPage = ({ match, fetchCollectionsStart, isFetching }) => {
 
@@ -19,6 +20,7 @@ const ShopPage = ({ match, fetchCollectionsStart, isFetching }) => {
                 fetchCollectionsStart();
             }
         )();
+        handleNoHover();
     }, [fetchCollectionsStart]);
 
     return (
@@ -38,7 +40,6 @@ const ShopPage = ({ match, fetchCollectionsStart, isFetching }) => {
 
 const mapStateToProps = createStructuredSelector({
     isFetching: selectIsCollectionFetching,
-    // isLoaded: selectIsCollectionsLoaded
 });
 
 const mapDispatchToProps = (dispatch) => ({
