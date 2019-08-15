@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
 import { default as App } from "./App.container";
 import { ApolloProvider } from 'react-apollo';
 import { createHttpLink } from 'apollo-link-http';

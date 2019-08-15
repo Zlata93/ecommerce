@@ -1,24 +1,11 @@
 import React from 'react';
-import { useEffect } from 'react';
 import './HomePage.scss';
 import Goods from '../../components/Goods/Goods';
+import useHideCart from "../../hooks/useHideCart";
 
 const HomePage = ({ isHidden, hideCart }) => {
 
-	useEffect(() => {
-		(function() {
-			if ("ontouchstart" in document.documentElement) {
-				const collectionPage = document.querySelector('.collection-page');
-				if (collectionPage) collectionPage.className += " no-hover";
-			}
-
-			if (!isHidden) {
-				hideCart();
-			}
-
-			window.scrollTo(0,0);
-		})()
-	}, []);
+	useHideCart(isHidden, hideCart);
 
 	return (
 		<div className='homepage'>
