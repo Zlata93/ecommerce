@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { selectCartHidden } from '../../redux/cart/cart-selectors';
 import { hideCart } from '../../redux/cart/cart-actions';
-import CollectionItem from '../../components/CollectionItem/CollectionItem';
+import { default as CollectionItem } from "../../components/CollectionItem/CollectionItemContainer";
 import './CollectionPage.scss';
 
 const CollectionPage = ({ collection, isHidden, hideCart }) => {

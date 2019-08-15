@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import CollectionItem from '../CollectionItem/CollectionItem';
+import { default as CollectionItem } from "../CollectionItem/CollectionItemContainer";
 import './Collection.scss';
 
 const Collection = ({title, items}) => {
