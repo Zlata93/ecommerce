@@ -5,9 +5,9 @@ import Header from "./Header";
 
 const HeaderContainer = () => {
     return (
-        <Query query={queries.GET_CARD_HIDDEN}>
+        <Query query={queries.GET_CLIENT_PROPERTIES}>
             {
-                ({ data: { cartHidden } }) => <Header isHidden={cartHidden} />
+                ({ data: { cartHidden, user } }) => <Header isHidden={cartHidden} user={user} />
             }
         </Query>
     );

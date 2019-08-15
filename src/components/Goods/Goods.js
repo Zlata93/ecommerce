@@ -1,13 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { selectGoodsSection } from '../../redux/goods/goods-selector';
 import GoodsItem from '../GoodsItem/GoodsItem';
+import goodsData from "./goods-data";
 import './Goods.scss';
 
-const Goods = ({ sections }) => {
+const Goods = () => {
     return (
         <div className='goods'>
-            {sections.map(({id, ...otherProps}) => (
+            {goodsData.map(({id, ...otherProps}) => (
                 <GoodsItem
                     key={id}
                     {...otherProps}
@@ -17,8 +16,4 @@ const Goods = ({ sections }) => {
     );
 };
 
-const mapStateToProps = (state) => ({
-    sections: selectGoodsSection(state)
-});
-
-export default connect(mapStateToProps)(Goods);
+export default Goods;

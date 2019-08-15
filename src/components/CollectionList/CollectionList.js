@@ -1,10 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { selectCartHidden } from '../../redux/cart/cart-selectors';
-import { hideCart } from '../../redux/cart/cart-actions';
 import Collection from '../Collection/Collection';
-import { createStructuredSelector } from 'reselect';
 import './CollectionList.scss';
 
 const CollectionList = ({ collections, isHidden, hideCart }) => {
@@ -35,12 +31,4 @@ const CollectionList = ({ collections, isHidden, hideCart }) => {
     );
 };
 
-const mapStateToProps = createStructuredSelector({
-    isHidden: selectCartHidden
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    hideCart: () => dispatch(hideCart())
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CollectionList);
+export default CollectionList;

@@ -1,8 +1,5 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { selectCartHidden } from '../../redux/cart/cart-selectors';
-import { hideCart } from '../../redux/cart/cart-actions';
 import './HomePage.scss';
 import Goods from '../../components/Goods/Goods';
 
@@ -30,12 +27,4 @@ const HomePage = ({ isHidden, hideCart }) => {
 	);
 };
 
-const mapStateToProps = (state) => ({
-	isHidden: selectCartHidden(state)
-});
-
-const mapDispatchToProps = (dispatch) => ({
-	hideCart: () => dispatch(hideCart())
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default HomePage;

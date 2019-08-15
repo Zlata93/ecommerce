@@ -16,6 +16,11 @@ const queries = {
             itemCount @client
         }
     `,
+    GET_TOTAL: gql`
+        {
+            total @client
+        }
+    `,
     GET_COLLECTIONS: gql`
         {
             collections {
@@ -28,6 +33,31 @@ const queries = {
                     imageUrl
                 }
             }
+        }
+    `,
+    GET_COLLECTION_BY_TITLE: gql`
+        query getCollectionsByTitle($title: String!) {
+            getCollectionsByTitle(title: $title) {
+                id
+                title
+                items {
+                    id
+                    name
+                    price
+                    imageUrl
+                }
+            }
+        }
+    `,
+    GET_CLIENT_PROPERTIES: gql`
+        {
+            cartHidden @client
+            user @client
+        }
+    `,
+    GET_USER: gql`
+        {
+            user @client
         }
     `
 };
