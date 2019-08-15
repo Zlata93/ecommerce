@@ -1,26 +1,15 @@
 import React from 'react';
 import { Mutation, Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import queries from "../../graphql/queries";
+import mutations from "../../graphql/mutations";
 import CartDropdown from "./CartDropdown";
-
-const TOGGLE_CART_HIDDEN = gql`
-    mutation ToggleCartHidden {
-        toggleCartHidden @client
-    }
-`;
-
-const GET_CART_ITEMS = gql`
-    {
-        cartItems @client
-    }
-`;
 
 const CartDropdownContainer = () => {
     return (
-        <Mutation mutation={TOGGLE_CART_HIDDEN}>
+        <Mutation mutation={mutations.TOGGLE_CART_HIDDEN}>
             {
                 (toggleCartHidden) => (
-                    <Query query={GET_CART_ITEMS}>
+                    <Query query={queries.GET_CART_ITEMS}>
                         {
                             ({ data: { cartItems } }) =>
                                 <CartDropdown cartItems={cartItems} toggleHidden={toggleCartHidden} />

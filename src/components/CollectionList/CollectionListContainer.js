@@ -1,27 +1,12 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
 import CollectionList from "./CollectionList";
+import queries from "../../graphql/queries";
 import Spinner from "../Spinner/Spinner";
-
-const GET_COLLECTIONS = gql`
-    {
-        collections {
-            id
-            title
-            items {
-                id
-                name
-                price
-                imageUrl
-            }
-        }
-    }
-`;
 
 const CollectionListContainer = () => {
     return (
-        <Query query={GET_COLLECTIONS}>
+        <Query query={queries.GET_COLLECTIONS}>
             {
                 ({ loading, error, data }) => {
                     if (loading) {

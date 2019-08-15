@@ -1,5 +1,6 @@
 import { gql } from 'apollo-boost';
-import { addItemToCart } from './cart-utils';
+import { addItemToCart, getItemCount } from './cart-utils';
+import queries from "./queries";
 
 export const typeDefs = gql`
     extend type Item {
@@ -13,27 +14,15 @@ export const typeDefs = gql`
     }
 `;
 
-const GET_CARD_HIDDEN = gql`
-    {
-        cartHidden @client
-    }
-`;
-
-const GET_CART_ITEMS = gql`
-    {
-        cartItems @client
-    }
-`;
-
 export const resolvers = {
     Mutation: {
         toggleCartHidden: (_root, _args, { cache }, _info) => {
             const { cartHidden } = cache.readQuery({
-                query: GET_CARD_HIDDEN
+                query: queries.GET_CARD_HIDDEN
             });
 
             cache.writeQuery({
-                query: GET_CARD_HIDDEN,
+                query: queries.GET_CARD_HIDDEN,
                 data: { cartHidden: !cartHidden }
             });
 
@@ -42,7 +31,7 @@ export const resolvers = {
 
         hideCart: (_root, _args, { cache }, _info) => {
             cache.writeQuery({
-                query: GET_CARD_HIDDEN,
+                query: queries.GET_CARD_HIDDEN,
                 data: { cartHidden: true }
             });
 
@@ -51,13 +40,18 @@ export const resolvers = {
 
         addItemToCart: (_root, { item }, { cache }) => {
             const { cartItems } = cache.readQuery({
-                query: GET_CART_ITEMS
+                query: queries.GET_CART_ITEMS
             });
 
             const newCartItems = addItemToCart(cartItems, item);
 
             cache.writeQuery({
-                query: GET_CART_ITEMS,
+                query: queries.GET_ITEM_COUNT,
+                data: { itemCount: getItemCount(newCartItems) }
+            });
+
+            cache.writeQuery({
+                query: queries.GET_CART_ITEMS,
                 data: { cartItems: newCartItems }
             });
 

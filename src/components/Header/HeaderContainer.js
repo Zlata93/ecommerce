@@ -1,18 +1,11 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import queries from "../../graphql/queries";
 import Header from "./Header";
-
-const GET_CARD_HIDDEN = gql`
-    {
-        cartHidden @client
-    }
-`;
-
 
 const HeaderContainer = () => {
     return (
-        <Query query={GET_CARD_HIDDEN}>
+        <Query query={queries.GET_CARD_HIDDEN}>
             {
                 ({ data: { cartHidden } }) => <Header isHidden={cartHidden} />
             }
