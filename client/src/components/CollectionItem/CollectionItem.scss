@@ -72,20 +72,3 @@
     }
   }
 }
-
-.collection-page.no-hover .collection-item {
-  &__button {
-    display: flex;
-    opacity: .75;
-  }
-
-  &:hover {
-    .collection-item__button {
-      opacity: .75;
-    }
-
-    .collection-item__image {
-      opacity: 1;
-    }
-  }
-}
