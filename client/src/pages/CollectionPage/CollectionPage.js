@@ -4,18 +4,16 @@ import { selectCollection } from '../../redux/shop/shop-selectors';
 import { selectCartHidden } from '../../redux/cart/cart-selectors';
 import { hideCart } from '../../redux/cart/cart-actions';
 import CollectionItem from '../../components/CollectionItem/CollectionItem';
-import { handleNoHover } from '../../utils/helpers';
 import './CollectionPage.scss';
 import useHideCart from "../../hooks/useHideCart";
+import useNoHover from "../../hooks/useNoHover";
 
 const CollectionPage = ({ collection, isHidden, hideCart }) => {
     const { title , items } = collection;
 
     useHideCart(isHidden, hideCart);
 
-    useEffect(() => {
-        handleNoHover();
-    }, []);
+    useNoHover('.collection-list');
 
     return (
         <div className='collection-page'>

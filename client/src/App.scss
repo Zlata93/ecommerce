@@ -17,6 +17,23 @@ body {
     margin-right: 10px;
 }
 
+.collection-list.no-hover .collection-item, .shop-page.no-hover .collection-item {
+    &__button {
+        display: flex;
+        opacity: .75;
+    }
+
+    &:hover {
+        .collection-item__button {
+            opacity: .75;
+        }
+
+        .collection-item__image {
+            opacity: 1;
+        }
+    }
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,

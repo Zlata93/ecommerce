@@ -7,7 +7,7 @@ import { selectIsCollectionFetching } from '../../redux/shop/shop-selectors';
 import CollectionList from '../../components/CollectionList/CollectionList';
 import CollectionPage from '../CollectionPage/CollectionPage';
 import WithSpinner from "../../hocs/withSpinner/withSpinner";
-import { handleNoHover } from "../../utils/helpers";
+import useNoHover from "../../hooks/useNoHover";
 
 const ShopPage = ({ match, fetchCollectionsStart, isFetching }) => {
 
@@ -20,8 +20,9 @@ const ShopPage = ({ match, fetchCollectionsStart, isFetching }) => {
                 fetchCollectionsStart();
             }
         )();
-        handleNoHover();
     }, [fetchCollectionsStart]);
+
+    useNoHover('.shop-page');
 
     return (
         <div className='shop-page'>

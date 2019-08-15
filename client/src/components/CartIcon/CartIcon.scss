@@ -18,4 +18,10 @@
     font-weight: bold;
     bottom: 12px;
   }
+
+  @media screen and (max-width: 400px) {
+    & {
+      padding-left: 10px;
+    }
+  }
 }

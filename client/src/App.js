@@ -9,7 +9,7 @@ import ShopPage from './pages/ShopPage/ShopPage';
 import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
 import SignInPage from './pages/SignInPage/SignInPage';
 import Header from './components/Header/Header';
-import './App.css';
+import './App.scss';
 
 const App = ({ checkUserSession, user }) => {
 	useEffect(() => {
