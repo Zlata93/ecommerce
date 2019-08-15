@@ -20,12 +20,17 @@ body {
 .collection-list.no-hover .collection-item, .shop-page.no-hover .collection-item {
     &__button {
         display: flex;
-        opacity: .75;
+        opacity: .8;
+        background: #fff;
+        color: #000;
+        border: 1px solid #000;
     }
 
     &:hover {
         .collection-item__button {
             opacity: .75;
+            background: #000;
+            color: #fff;
         }
 
         .collection-item__image {

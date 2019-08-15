@@ -32,6 +32,10 @@
   }
 
   @media screen and (max-width: 400px) {
+    &__options {
+      width: 80%;
+    }
+
     &__option {
       padding: 10px;
     }
